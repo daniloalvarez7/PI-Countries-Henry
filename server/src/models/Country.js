@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
         is: /^[A-Z]{3}$/ //Esto me sirve para ver si el ID son tres letras mayúsculas //
       }
     },
-    image: {
+    flag_image: {
       type: DataTypes.STRING,
       allowNull: false
     },

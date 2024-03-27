@@ -1,10 +1,12 @@
 const { Router } = require("express");
+const countriesRouter = require("./countriesRouter");
+const activitiesRouter = require("./activitiesRouter");
 
 const router = Router();
 
-router.get('/countries', (req, res) => {
-    res.status(200).send('Acá van los países prro')
-})
+router.use('/countries', countriesRouter);
+
+router.use('/activities', activitiesRouter);
 
 
 module.exports = router;
