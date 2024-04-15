@@ -1,9 +1,52 @@
-.detail-container{
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   margin: 0 auto;
-   text-align: center;
+.home-container {
+  padding: 20px;
 }
 
+.detalle {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
 
+.detail-container {
+  background: linear-gradient(
+    135deg,
+    #8e2de2,
+    #4a00e0
+  ); /* Gradiente de color */
+  padding: 20px;
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+  max-width: 400px;
+  max-height: 450px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Ajustes para el contenido */
+.detail-container p {
+  margin: 5px;
+  font-size: 14px;
+  color: #fff; /* Color de texto */
+}
+
+/* Efecto de hover */
+.detail-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.country-detail {
+  font-weight: bold;
+}
+
+.actividades {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.actividad-lista {
+  margin-bottom: 10px;
+}

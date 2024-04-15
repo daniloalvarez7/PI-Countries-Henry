@@ -1,22 +1,32 @@
 .nav {
-    background-color: rgba(0, 0, 0, 0.7); /* Color de fondo opaco */
-    width: 96vw; /* Ocupar todo el ancho de la pantalla */
-    height: 50px;
-    display: flex; /* Mostrar los elementos en línea */
-    justify-content: space-between; /* Distribuir los elementos horizontalmente */
-    align-items: center; /* Centrar verticalmente los elementos */
-    padding: 10px 22px; /* Espacio interior */
+  background-color: rgba(0, 0, 0, 0.7); /* Color de fondo opaco */
+  width: 96vw; /* Ocupar todo el ancho de la pantalla */
+  height: 50px;
+  display: flex; /* Mostrar los elementos en línea */
+  justify-content: space-between; /* Distribuir los elementos horizontalmente */
+  align-items: center; /* Centrar verticalmente los elementos */
+  padding: 10px 22px; /* Espacio interior */
 }
 
 .nav a {
-    text-decoration: none; /* Quitar subrayado de los enlaces */
-    color: white; /* Color del texto */
-    margin: 0 10px; /* Margen entre los elementos */
-    padding: 8px 12px; /* Espacio interior */
-    border-radius: 5px; /* Bordes redondeados */
-    transition: background-color 0.3s ease; /* Transición suave */
+  text-decoration: none; /* Quitar subrayado de los enlaces */
+  color: white; /* Color del texto */
+  margin: 0 10px; /* Margen entre los elementos */
+  padding: 8px 12px; /* Espacio interior */
+  border-radius: 5px; /* Bordes redondeados */
+  transition: background-color 0.3s ease; /* Transición suave */
 }
 
 .nav a:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Color de fondo al pasar el mouse */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.2
+  ); /* Color de fondo al pasar el mouse */
+}
+
+.logo-image {
+  width: 50px; /* Ajusta el tamaño de la imagen según tus preferencias */
+  height: auto; /* Permite que la altura se ajuste automáticamente */
 }

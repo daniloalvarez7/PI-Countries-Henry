@@ -56,6 +56,7 @@ const Home = () => {
   };
 
   // FILTRADO //
+
   const handleClickFilterByContinent = (e) => {
     e.preventDefault();
     const filterByContinent = allCountries.filter(
@@ -64,27 +65,28 @@ const Home = () => {
     setFiltered(filterByContinent);
   };
 
-  const handleClickFilterByActivity = (e) => {
-    e.preventDefault();
-    //Buscar las actividades de la temporada elegidas
-    const filteredActivities = activities.filter(
-      (activity) => activity.season === e.target.value
-    );
-    //De esas actividades, listar los paises que correspondan a cada una
-    const countryForActivity =
-      // Del listado de allcountries, filtrar solo aquellos que estaban incluidos en las actividades
-      //Devolver esos countries
-      setFiltered(filterByContinent);
+  const handleClickFilterByActivityList = () => {
+    const AllActivities = allCountries.flatMap((country) => country.Activities);
+    const uniqueActivities = [
+      ...new Set(AllActivities.map((activity) => activity.name)),
+    ];
+    console.log("Lista de actividades:", uniqueActivities);
   };
 
+  const handleClickFilterByActivity = (e) => {
+    e.preventDefault();
+    const activityName = e.target.value;
+
+    // Filtrar los países que contienen la actividad seleccionada
+    const filteredCountries = allCountries.filter((country) =>
+      country.Activities.some((activity) => activity.name === activityName)
+    );
+
+    // Establecer los países filtrados como el nuevo estado
+    setFiltered(filteredCountries);
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
-    // const countryExists = allCountries.find(country => country.name.toLowerCase() === searchCountry.toLowerCase());
-    // if (countryExists) {
-    //     navigate(`/detail/${countryExists.id}`);
-    // } else {
-    //     alert('El país ingresado no existe en la base de datos.');
-    // }
     const filtered = allCountries.filter((country) =>
       country.name.includes(searchCountry)
     );
@@ -98,15 +100,16 @@ const Home = () => {
 
   return (
     <div className="home">
-      <p className="home-title">Estás en la Home Page</p>
+      {/* <p className="home-title">Estás en la Home Page</p> */}
 
-      <div>
+      <div className="filters-container">
         <div>
           <SearchBar handleChange={handleChange} handleSubmit={handleSubmit} />
         </div>
-        <section>
+        <div className="select-container">
           <label htmlFor="name">Name</label>
           <select
+            className="home-select"
             id="name"
             onChange={(e) => {
               handleClickOrderAlp(e);
@@ -118,21 +121,19 @@ const Home = () => {
 
           <label htmlFor="population">Population</label>
           <select
+            className="home-select"
             id="population"
             onChange={(e) => {
               handleClickOrderPopulation(e);
             }}
           >
-            <option value="asc">Min </option>
+            <option value="asc">Min</option>
             <option value="des">Max</option>
           </select>
-        </section>
-      </div>
 
-      <div>
-        <section>
           <label htmlFor="continent">Continent</label>
           <select
+            className="home-select"
             id="continent"
             onChange={(e) => {
               handleClickFilterByContinent(e);
@@ -149,17 +150,20 @@ const Home = () => {
 
           <label htmlFor="activities">Activities</label>
           <select
+            className="home-select"
             id="activities"
+            onClick={handleClickFilterByActivityList}
             onChange={(e) => {
               handleClickFilterByActivity(e);
             }}
           >
-            <option value="Verano">Verano </option>
-            <option value="Otoño">Otoño</option>
-            <option value="Invierno">Invierno</option>
-            <option value="Primavera">Primavera</option>
+            {activities.map((activity) => (
+              <option key={activity.id} value={activity.name}>
+                {activity.name}
+              </option>
+            ))}
           </select>
-        </section>
+        </div>
       </div>
 
       <Cards
@@ -170,15 +174,17 @@ const Home = () => {
         }
       />
 
-      <div>
+      <div className="pagination-container">
         <button
+          className="home-button"
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
         >
           Prev
         </button>
-        <button>{getCurrentPageNumber()}</button>
+        <button className="home-button">{getCurrentPageNumber()}</button>
         <button
+          className="home-button"
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={endIndex >= allCountries.length}
         >

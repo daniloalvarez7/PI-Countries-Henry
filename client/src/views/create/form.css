@@ -1,0 +1,60 @@
+.activity-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.activity-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.activity-form span {
+  font-weight: bold;
+}
+
+.activity-form select,
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.activity-form button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.activity-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.selected-country {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 5px 10px;
+  background-color: #0d0740;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.selected-country button {
+  margin-left: 1px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
