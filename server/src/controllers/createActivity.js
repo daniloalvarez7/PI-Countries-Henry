@@ -1,4 +1,5 @@
-const {Activity} = require('../db')
+const { Op } = require('sequelize');
+const {Activity, Country} = require('../db')
 
 const createActivity = async (name, countryIDs, difficulty, duration, season) => {
     try {
