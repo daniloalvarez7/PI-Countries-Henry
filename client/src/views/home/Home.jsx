@@ -119,6 +119,7 @@ const Home = () => {
               handleClickFilterByContinent(e);
             }}
           >
+            <option value="All"> All Continents </option>
             <option value="North America">North America</option>
             <option value="South America">South America</option>
             <option value="Europe">Europe</option>
