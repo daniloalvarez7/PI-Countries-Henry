@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getActivities,
   getCountries,
+  getCountriesXActivity,
+  getCountriesXContinent,
   orderAlp,
   orderPopulation,
 } from "../../redux/actions";
@@ -12,24 +14,19 @@ import "./home.css";
 import SearchBar from "../../components/search/SearchBar";
 
 const Home = () => {
-  useEffect(() => {
-    dispatch(getCountries()); // Cuando el componente se monta, se cargan las countries //
-    dispatch(getActivities());
-  }, []);
-
   const dispatch = useDispatch();
 
   const allCountries = useSelector((state) => state.allCountries); // Me "suscribo" al estado para que el componente esté enterado de los cambios del mismo //
   const pageSize = 10; // cards que se muestran por página //
   const activities = useSelector((state) => state.activities);
-  // console.log(state);
   const [searchCountry, setSearchCountry] = useState(""); // Estado para la SearchBar //
   const [filtered, setFiltered] = useState(allCountries);
   const [currentPage, setCurrentPage] = useState(1); //estado local, pagina actual
 
-  useEffect(() => {
-    setFiltered(allCountries);
-  }, [allCountries]);
+  // useEffect(() => {
+  //   setFiltered(allCountries);
+  // }, [allCountries]);
+
   // PAGINACIÓN //
 
   const handlePageChange = (page) => {
@@ -58,33 +55,13 @@ const Home = () => {
   // FILTRADO //
 
   const handleClickFilterByContinent = (e) => {
-    e.preventDefault();
-    const filterByContinent = allCountries.filter(
-      (country) => country.continent === e.target.value
-    );
-    setFiltered(filterByContinent);
-  };
-
-  const handleClickFilterByActivityList = () => {
-    const AllActivities = allCountries.flatMap((country) => country.Activities);
-    const uniqueActivities = [
-      ...new Set(AllActivities.map((activity) => activity.name)),
-    ];
-    console.log("Lista de actividades:", uniqueActivities);
+    dispatch(getCountriesXContinent(e.target.value));
   };
 
   const handleClickFilterByActivity = (e) => {
-    e.preventDefault();
-    const activityName = e.target.value;
-
-    // Filtrar los países que contienen la actividad seleccionada
-    const filteredCountries = allCountries.filter((country) =>
-      country.Activities.some((activity) => activity.name === activityName)
-    );
-
-    // Establecer los países filtrados como el nuevo estado
-    setFiltered(filteredCountries);
+    dispatch(getCountriesXActivity(e.target.value));
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const filtered = allCountries.filter((country) =>
@@ -98,10 +75,12 @@ const Home = () => {
     setSearchCountry(event.target.value);
   };
 
+  useEffect(() => {
+    dispatch(getCountries()); // Cuando el componente se monta, se cargan las countries //
+    dispatch(getActivities());
+  }, []);
   return (
     <div className="home">
-      {/* <p className="home-title">Estás en la Home Page</p> */}
-
       <div className="filters-container">
         <div>
           <SearchBar handleChange={handleChange} handleSubmit={handleSubmit} />
@@ -115,6 +94,7 @@ const Home = () => {
               handleClickOrderAlp(e);
             }}
           >
+            <option value="A"> All </option>
             <option value="asc">a-z</option>
             <option value="des">z-a</option>
           </select>
@@ -152,7 +132,6 @@ const Home = () => {
           <select
             className="home-select"
             id="activities"
-            onClick={handleClickFilterByActivityList}
             onChange={(e) => {
               handleClickFilterByActivity(e);
             }}

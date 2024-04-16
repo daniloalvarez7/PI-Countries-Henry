@@ -5,6 +5,8 @@ export const GET_BY_NAME = "GET_BY_NAME";
 export const ORDER_ALP = "ORDER-ALP";
 export const ORDER_POPULATION = "ORDER_POPULATION";
 export const GET_ACTIVITIES = "GET_ACTIVITIES";
+export const GET_COUNTRIES_X_CONTINENT = "GET_COUNTRIES_X_CONTINENT";
+export const GET_COUNTRIES_x_ACTIVITY = "GET_COUNTRIES_X_ACTIVITY";
 
 export const getCountries = () => {
   return async function (dispatch) {
@@ -44,4 +46,13 @@ export const orderAlp = (order) => {
 
 export const orderPopulation = (order) => {
   return { type: ORDER_POPULATION, payload: order };
+};
+
+export const getCountriesXContinent = (payload) => {
+  return { type: GET_COUNTRIES_X_CONTINENT, payload: payload };
+};
+
+export const getCountriesXActivity = (payload) => {
+  console.log("Activities", payload);
+  return { type: GET_COUNTRIES_x_ACTIVITY, payload: payload };
 };
