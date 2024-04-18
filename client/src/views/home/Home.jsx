@@ -23,10 +23,6 @@ const Home = () => {
   const [filtered, setFiltered] = useState(allCountries);
   const [currentPage, setCurrentPage] = useState(1); //estado local, pagina actual
 
-  // useEffect(() => {
-  //   setFiltered(allCountries);
-  // }, [allCountries]);
-
   // PAGINACIÓN //
 
   const handlePageChange = (page) => {
@@ -56,10 +52,12 @@ const Home = () => {
 
   const handleClickFilterByContinent = (e) => {
     dispatch(getCountriesXContinent(e.target.value));
+    setCurrentPage(1);
   };
 
   const handleClickFilterByActivity = (e) => {
     dispatch(getCountriesXActivity(e.target.value));
+    setCurrentPage(1);
   };
 
   const handleSubmit = (event) => {
@@ -78,7 +76,8 @@ const Home = () => {
   useEffect(() => {
     dispatch(getCountries()); // Cuando el componente se monta, se cargan las countries //
     dispatch(getActivities());
-  }, []);
+  }, []); // Array de dependencias //
+
   return (
     <div className="home">
       <div className="filters-container">
